@@ -33,5 +33,8 @@ public class Main {
 
         stack.pop();
         System.out.println(stack);
+
     }
+
+
 }

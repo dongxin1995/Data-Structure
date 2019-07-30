@@ -9,39 +9,38 @@ import java.util.TreeMap;
 /**
  * @author dongxin
  * @create 2019/7/8
- *
- *
-优先队列的经典问题 LeetCode347
-在1000000个元素中选出前100名？
-在N个元素中选出M个元素
-
-使用优先队列，维护当前看到的前M个元素
-需要使用最小堆
-
+ * <p>
+ * <p>
+ * 优先队列的经典问题 LeetCode347
+ * 在1000000个元素中选出前100名？
+ * 在N个元素中选出M个元素
+ * <p>
+ * 使用优先队列，维护当前看到的前M个元素
+ * 需要使用最小堆
  */
 public class Solution {
 
-    private class Freq implements Comparable<Freq>{
+    private class Freq implements Comparable<Freq> {
 
-        int e,freq;
+        int e, freq;
 
-        public Freq(int e,int freq){
+        public Freq(int e, int freq) {
             this.e = e;
             this.freq = freq;
         }
 
         @Override
         public int compareTo(Freq another) {
-            if (this.freq<another.freq)
+            if (this.freq < another.freq)
                 return -1;
-            else if (this.freq>another.freq)
+            else if (this.freq > another.freq)
                 return 1;
             else
                 return 0;
         }
     }
 
-    public List<Integer> topKFrequent(int[] nums , int k) {
+    public List<Integer> topKFrequent(int[] nums, int k) {
         TreeMap<Integer, Integer> map = new TreeMap<>();
         for (int num : nums) {
             if (map.containsKey(num))
@@ -55,12 +54,12 @@ public class Solution {
         //承载的元素类型一定要是可比较的，这里的PriorityQueue用的是我们自己定义的不是util下的
         PriorityQueue<Freq> priorityQueue = new PriorityQueue<>();
 
-        for (int key :map.keySet()){
-            if (priorityQueue.size()<k)
-                priorityQueue.add(new Freq(key,map.get(key)));
-            else if (map.get(key)>priorityQueue.peek().freq){
+        for (int key : map.keySet()) {
+            if (priorityQueue.size() < k)
+                priorityQueue.add(new Freq(key, map.get(key)));
+            else if (map.get(key) > priorityQueue.peek().freq) {
                 priorityQueue.remove();
-                priorityQueue.add(new Freq(key,map.get(key)));
+                priorityQueue.add(new Freq(key, map.get(key)));
             }
         }
 

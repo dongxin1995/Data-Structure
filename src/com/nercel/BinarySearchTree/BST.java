@@ -313,7 +313,7 @@ public class BST<E extends Comparable<E>> {
         return res.toString();
     }
 
-    //生成以node为根节点，深度为depth的描述二叉树的字符串
+    //生成以node为根节点，深度为depth的描述二叉树的字符串BST
     private void generateBSTString(Node node, int depth, StringBuilder res) {
         if (node ==null){
             res.append(generateDepthString(depth)+"null\n");
